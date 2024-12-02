@@ -14,3 +14,19 @@ auto Utils::readLines(const char* path) -> std::vector<std::string>{
 
     return output;
 }
+
+auto Utils::readInts(const char* path) -> std::vector<std::vector<int>> {
+    std::vector<std::vector<int>> output;
+
+    std::ifstream fileIn(path);
+    for (std::string line; std::getline(fileIn, line);) {
+        std::stringstream ss(line);
+        std::vector<int>& row = output.emplace_back();
+        int num;
+        while (ss >> num) {
+            row.push_back(num);
+        }
+    }
+
+    return output;
+}

@@ -9,8 +9,9 @@ namespace Solutions {
     using Answers = std::pair<std::string, std::string>;
 
     auto solution1() -> Answers;
+    auto solution2() -> Answers;
 
-    constexpr int MAX = 1;
+    constexpr int MAX = 2;
 
     auto selectSolution() -> std::function<Answers()> ;
 }

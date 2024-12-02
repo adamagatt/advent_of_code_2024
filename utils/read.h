@@ -30,6 +30,8 @@ namespace Utils {
         return output;
     }
 
+    [[nodiscard]] auto readInts(const char* path) -> std::vector<std::vector<int>>;
+
     template <size_t C>
     using Row = std::array<int, C>;
 

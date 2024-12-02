@@ -9,12 +9,14 @@ set(SOURCES
 
     solutions/solutions.cpp
     solutions/solution1.cpp
+    solutions/solution2.cpp
 
     utils/read.cpp
 )
 
 set(INPUTS
     inputs/input1.txt
+    inputs/input2.txt
 )
 
 add_executable(aoc24 ${SOURCES})
