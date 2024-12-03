@@ -13,6 +13,8 @@ namespace Utils {
 
     [[nodiscard]] auto readLines(const char* path) -> std::vector<std::string>;
 
+    [[nodiscard]] auto readAsSingleLine(const char* path) -> std::string;
+
     template <size_t N>
     [[nodiscard]] auto readTokens(const char* path) -> std::vector<std::array<std::string, N>> {
         std::vector<std::array<std::string, N>> output;
