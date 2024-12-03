@@ -48,7 +48,7 @@ auto safeWithDampener(const std::vector<int>& row) -> bool {
     //       0 2 3 4 5   (bringing in 0 leaves out 1)
     //       0 1 3 4 5   (bringing in 1 leaves out 2), etc.
     if (safe(dampened)) return true;
-    for (int i = 0; i < row.size() - 1; ++i) {
+    for (int i = 0; i < dampened.size() - 1; ++i) {
         dampened[i] = row[i];
         if (safe(dampened)) return true;
     }
