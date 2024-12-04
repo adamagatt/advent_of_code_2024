@@ -35,7 +35,7 @@ namespace Utils {
     [[nodiscard]] auto readInts(const char* path) -> std::vector<std::vector<int>>;
 
     template <size_t C>
-    using Row = std::array<int, C>;
+    using Row = std::array<char, C>;
 
     template <size_t R, size_t C>
     using Grid = std::array<Row<C>, R>;
@@ -46,9 +46,9 @@ namespace Utils {
 
         std::ifstream fileIn(path);
 
-        std::array<int, C>* row = grid.begin();
+        std::array<char, C>* row = grid.begin();
         for (std::string line; std::getline(fileIn, line); ++row) {
-            std::ranges::transform(line, row->begin(), parseIntChar);
+            std::ranges::copy(line, row->begin());
         }
 
         return grid;
