@@ -15,7 +15,8 @@ auto Solutions::solution5() -> Answers {
 
     // To represent this logic I will use a map of B -> {A0 A1 A2}, where
     // each B is associated with a set of all pages that must come before
-    // it. These pages go into a watchlist (set) and if any are encountered
+    // it. When any page B is encountered then its set of associated precedence
+    // pages are added into a watchlist and if any are encountered in future
     // then a rule has been violated.
 
     auto input = Utils::readLines("inputs/input5.txt");
@@ -40,12 +41,11 @@ auto Solutions::solution5() -> Answers {
     // the ordering of A and B by checking if B->A is a violation and,
     // if so, returning "true" to indicate that A is ordered before B.
 
+    auto comparator = [&violationRules](int pageA, int pageB){return isPageABeforeB(pageA, pageB, violationRules);};
+
     int answerB = 0;
     for (auto& manual : incorrectlyOrderedManuals) { // Non-const as we will sort these
-        std::sort(
-            manual.begin(), manual.end(),
-            [&violationRules](int pageA, int pageB){return pageComparator(pageA, pageB, violationRules);}
-        );
+        std::ranges::sort(manual, comparator);
         answerB += getMiddlePage(manual);
     }
 
@@ -106,7 +106,7 @@ auto getMiddlePage(const Manual& manual) -> int {
     return *std::next(manual.begin(), manual.size()/2);
 }
 
-auto pageComparator(int pageA, int pageB, const ViolationRules& rules) -> bool {
+auto isPageABeforeB(int pageA, int pageB, const ViolationRules& rules) -> bool {
     if (const auto& rule = rules.find(pageB); rule != rules.end()) {
         // An entry indicates that other pages must come before B
         const auto& [_, pagesBefore] = *rule;

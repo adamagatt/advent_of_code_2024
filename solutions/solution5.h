@@ -16,6 +16,6 @@ auto correctlyOrdered(const Manual& manual, const ViolationRules& violationRules
 
 auto getMiddlePage(const Manual& manual) -> int;
 
-auto pageComparator(int pageA, int pageB, const ViolationRules& rules) -> bool;
+auto isPageABeforeB(int pageA, int pageB, const ViolationRules& rules) -> bool;
 
 #endif
